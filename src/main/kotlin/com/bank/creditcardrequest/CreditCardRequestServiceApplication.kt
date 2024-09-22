@@ -1,4 +1,4 @@
-package com.example.credit_card_request_service
+package com.bank.creditcardrequest
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
