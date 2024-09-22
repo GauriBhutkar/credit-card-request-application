@@ -53,9 +53,9 @@ class SaveApplicationTest {
         val result: Mono<ApplicationStatus> = saveApplication.invoke(customerDetailsInput)
 
         StepVerifier.create(result)
-            .assertNext { result ->
-                assertEquals(result.applicationId, savedApplication.id)
-                assertEquals(Status.UNDER_REVIEW, result.status)
+            .assertNext { response ->
+                assertEquals(response.applicationId, savedApplication.id)
+                assertEquals(Status.UNDER_REVIEW, response.status)
             }
             .verifyComplete()
     }
