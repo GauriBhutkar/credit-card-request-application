@@ -17,17 +17,24 @@ java {
 repositories {
 	mavenCentral()
 }
-
+val ktlint by configurations.creating
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation("io.mockk:mockk:1.13.7")
+	ktlint("com.pinterest:ktlint:0.48.2") {
+		attributes {
+			attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+		}
+	}
 }
 
 kotlin {
@@ -38,4 +45,12 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.register<JavaExec>("ktLintFormat") {
+	group = "formatting"
+	description = "Fix Kotlin code style deviations."
+	classpath = ktlint
+	mainClass.set("com.pinterest.ktlint.Main")
+	args = listOf("-F", "src/**/*.kt")
 }

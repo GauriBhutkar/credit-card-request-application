@@ -15,13 +15,13 @@ import reactor.core.publisher.Mono
 @RestController
 @RequestMapping("/api/v1/credit-card")
 class CreditCardApplicationController(
-    applicationRepository: ApplicationRepository
+    applicationRepository: ApplicationRepository,
 ) {
     private val saveApplication = SaveApplication(applicationRepository)
 
     @PostMapping("/apply")
     fun applyForCreditCard(
-        @RequestBody applicationDetails: CustomerDetailsInput
+        @RequestBody applicationDetails: CustomerDetailsInput,
     ): Mono<ResponseEntity<ApplicationStatus>> {
         return saveApplication(applicationDetails).map {
             ResponseEntity(it, HttpStatus.ACCEPTED)

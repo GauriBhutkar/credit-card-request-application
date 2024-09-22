@@ -10,5 +10,5 @@ class ApplicationStatus(
 )
 
 enum class Status {
-    UNDER_REVIEW
+    UNDER_REVIEW,
 }

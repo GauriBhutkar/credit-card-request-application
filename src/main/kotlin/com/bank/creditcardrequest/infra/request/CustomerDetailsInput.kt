@@ -12,12 +12,12 @@ class CustomerDetailsInput(
     val annualIncome: Long,
     val employmentDetails: EmploymentDetails,
     val creditCardLimit: Long,
-    val bankStatement: File
+    val bankStatement: File,
 )
 
 class EmploymentDetails(
     val employmentStatus: EmploymentStatus,
-    val employerName: String?
+    val employerName: String?,
 )
 
 enum class EmploymentStatus {

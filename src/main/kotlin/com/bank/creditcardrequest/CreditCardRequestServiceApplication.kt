@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class CreditCardRequestServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<CreditCardRequestServiceApplication>(*args)
+    runApplication<CreditCardRequestServiceApplication>(*args)
 }
