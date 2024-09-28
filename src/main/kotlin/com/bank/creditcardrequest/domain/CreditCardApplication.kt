@@ -47,3 +47,7 @@ data class EmploymentDetails(
         }
     }
 }
+
+enum class VerificationStatus {
+    VERIFIED, PENDING, IN_PROGRESS, REJECTED
+}

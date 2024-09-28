@@ -21,5 +21,5 @@ class EmploymentDetails(
 )
 
 enum class EmploymentStatus {
-    FULL_TIME, PART_TIME, UNEMPLOYED, STUDENT, RETIRED
+    FULL_TIME, PART_TIME, UNEMPLOYED, STUDENT, RETIRED, SELF_EMPLOYED
 }

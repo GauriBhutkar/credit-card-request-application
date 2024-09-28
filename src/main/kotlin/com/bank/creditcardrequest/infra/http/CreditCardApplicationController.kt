@@ -19,7 +19,7 @@ class CreditCardApplicationController(
 ) {
     private val saveApplication = SaveApplication(applicationRepository)
 
-    @PostMapping("/apply")
+    @PostMapping("/applications")
     fun applyForCreditCard(
         @RequestBody applicationDetails: CustomerDetailsInput,
     ): Mono<ResponseEntity<ApplicationStatus>> {
