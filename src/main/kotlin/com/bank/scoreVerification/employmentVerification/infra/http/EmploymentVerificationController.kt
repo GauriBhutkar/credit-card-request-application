@@ -1,9 +1,9 @@
 package com.bank.scoreVerification.employmentVerification.infra.http
 
 import com.bank.scoreVerification.employmentVerification.client.EmploymentVerificationESBClient
-import com.bank.scoreVerification.employmentVerification.repositories.EmploymentVerificationRepository
 import com.bank.scoreVerification.employmentVerification.infra.request.EmploymentVerificationInput
 import com.bank.scoreVerification.employmentVerification.infra.response.EmploymentVerificationResult
+import com.bank.scoreVerification.employmentVerification.repositories.EmploymentVerificationRepository
 import com.bank.scoreVerification.employmentVerification.usecases.VerifyEmploymentDetails
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono
 @RequestMapping("/api/v1/credit-card")
 class EmploymentVerificationController(
     employmentVerificationESBClient: EmploymentVerificationESBClient,
-    employmentVerificationRepository: EmploymentVerificationRepository
+    employmentVerificationRepository: EmploymentVerificationRepository,
 ) {
     private val verifyEmploymentDetails = VerifyEmploymentDetails(employmentVerificationESBClient, employmentVerificationRepository)
 

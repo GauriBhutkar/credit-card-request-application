@@ -31,19 +31,19 @@ class VerifyEmploymentDetailsTest {
         employerDetails = EmployerDetails(
             employerName = "Tech Solutions",
             employerContact = "+971-55-567-8901",
-            employerAddress = "1234 Business Bay, Dubai"
+            employerAddress = "1234 Business Bay, Dubai",
         ),
         jobTitle = "Software Engineer",
         position = "Senior Engineer",
         employmentStatus = "Active",
         incomeInformation = IncomeInformation(
             amount = 20000.0,
-            frequency = "Monthly"
+            frequency = "Monthly",
         ),
         employmentType = EmploymentType.PERMANENT,
         verificationMethod = "Direct contact with employer",
         verificationStatus = VerificationStatus.VERIFIED,
-        verificationScore = 85
+        verificationScore = 85,
     )
 
     @Test
@@ -53,12 +53,12 @@ class VerifyEmploymentDetailsTest {
             customerId,
             "John Doe",
             "9987654321",
-            EmploymentDetails(EmploymentStatus.FULL_TIME, "Tech Solutions")
+            EmploymentDetails(EmploymentStatus.FULL_TIME, "Tech Solutions"),
         )
 
         val expectedResult = EmploymentVerificationResult(
             verificationStatus = VerificationStatus.VERIFIED,
-            verificationScore = 85
+            verificationScore = 85,
         )
         every { employmentVerificationESBClient.verifyEmploymentDetails(input) } returns Mono.just(employmentRecord)
         every { employmentVerificationRepository.save(employmentRecord) } returns Mono.just(employmentRecord)

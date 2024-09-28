@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
 
 class VerifyEmploymentDetails(
     private val employmentVerificationESBClient: EmploymentVerificationESBClient,
-    private val employmentVerificationRepository: EmploymentVerificationRepository
+    private val employmentVerificationRepository: EmploymentVerificationRepository,
 ) {
     private val logger = LoggerFactory.getLogger(SaveApplication::class.java)
 

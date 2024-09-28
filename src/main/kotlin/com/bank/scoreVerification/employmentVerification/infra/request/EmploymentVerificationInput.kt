@@ -7,5 +7,5 @@ class EmploymentVerificationInput(
     val customerId: UUID,
     val customerName: String,
     val mobileNumber: String,
-    val employerDetails: EmploymentDetails
+    val employerDetails: EmploymentDetails,
 )

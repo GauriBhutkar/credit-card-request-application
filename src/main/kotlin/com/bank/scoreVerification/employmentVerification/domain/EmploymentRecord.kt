@@ -13,7 +13,7 @@ class EmploymentRecord(
     val employmentType: EmploymentType,
     val verificationMethod: String,
     val verificationStatus: VerificationStatus,
-    val verificationScore: Int
+    val verificationScore: Int,
 )
 
 class EmployerDetails(
@@ -28,5 +28,5 @@ class IncomeInformation(
 )
 
 enum class EmploymentType {
-    PERMANENT, PROBATIONARY, CONTRACTUAL;
+    PERMANENT, PROBATIONARY, CONTRACTUAL
 }
