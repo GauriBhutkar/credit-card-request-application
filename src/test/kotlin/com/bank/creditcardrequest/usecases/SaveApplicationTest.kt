@@ -8,9 +8,9 @@ import com.bank.creditcardrequest.infra.response.ApplicationStatus
 import com.bank.creditcardrequest.infra.response.Status
 import com.bank.creditcardrequest.repositories.ApplicationRepository
 import io.mockk.every
+import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.mock
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 import java.io.File
@@ -18,7 +18,7 @@ import java.util.UUID
 
 class SaveApplicationTest {
 
-    private val applicationRepository: ApplicationRepository = mock()
+    private val applicationRepository: ApplicationRepository = mockk()
     private val saveApplication: SaveApplication = SaveApplication(applicationRepository)
 
     @Test
@@ -47,7 +47,7 @@ class SaveApplicationTest {
             customerDetailsInput.bankStatement,
         )
         every {
-            applicationRepository.save(any())
+            applicationRepository.save(any<CreditCardApplication>())
         } returns Mono.just(savedApplication)
 
         val result: Mono<ApplicationStatus> = saveApplication.invoke(customerDetailsInput)

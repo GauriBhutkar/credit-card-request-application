@@ -19,7 +19,7 @@ class SaveApplication(
         return applicationRepository.save(creditCardApplication)
             .map {
                 logger.info("Application saved successfully with ID: ${creditCardApplication.id}")
-                ApplicationStatus(creditCardApplication.id, Status.UNDER_REVIEW)
+                ApplicationStatus(it.id, Status.UNDER_REVIEW)
             }
     }
 }
