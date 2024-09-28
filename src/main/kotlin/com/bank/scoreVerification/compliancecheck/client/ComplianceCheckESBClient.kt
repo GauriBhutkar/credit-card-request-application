@@ -11,7 +11,7 @@ class ComplianceCheckESBClient {
     private val logger = LoggerFactory.getLogger(ComplianceCheckESBClient::class.java)
 
     fun complianceCheck(input: ComplianceCheckInput): Mono<ComplianceCheckRecord> {
-        logger.debug("Fetching employer details for customerId: {}", input.customerId)
+        logger.debug("Fetching compliance details for customerId: {}", input.customerId)
         return Mono.empty()
     }
 }
