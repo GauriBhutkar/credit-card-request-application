@@ -1,6 +1,5 @@
 package com.bank.scoreVerification.employmentVerification.usecases
 
-import com.bank.creditcardrequest.usecases.SaveApplication
 import com.bank.scoreVerification.employmentVerification.client.EmploymentVerificationESBClient
 import com.bank.scoreVerification.employmentVerification.infra.request.EmploymentVerificationInput
 import com.bank.scoreVerification.employmentVerification.infra.response.EmploymentVerificationResult
@@ -12,7 +11,7 @@ class VerifyEmploymentDetails(
     private val employmentVerificationESBClient: EmploymentVerificationESBClient,
     private val employmentVerificationRepository: EmploymentVerificationRepository,
 ) {
-    private val logger = LoggerFactory.getLogger(SaveApplication::class.java)
+    private val logger = LoggerFactory.getLogger(VerifyEmploymentDetails::class.java)
 
     operator fun invoke(employmentVerificationInput: EmploymentVerificationInput): Mono<EmploymentVerificationResult> {
         logger.debug("Processing employment verification for customer {}", employmentVerificationInput.customerId)
