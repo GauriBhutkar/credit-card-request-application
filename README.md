@@ -15,7 +15,7 @@ This project implements a credit card application processing system that evaluat
 2. Scoring Adjustments:
     - If Mandatory Check is Successful, the system continues evaluating the other categories (Compliance Check, Employment Verification, Risk Evaluation, Behavioral Analysis) to calculate the total score
 3. Outcome Thresholds:
-    - Above 90% Total Score (with Identity Verification "Yes"): STP (Straight-Through Processing) — The card is issued automatically.
-    - 75% - 90% Total Score (with Identity Verification "Yes"): Near-STP — The card is issued automatically, but the credit limit is set manually after a review.
-    - 50% - 75% Total Score (with Identity Verification "Yes"): Manual Review — The application goes for further assessment by an underwriter.
-    - Below 50% Total Score or Identity Verification "No": Rejected — The application is automatically rejected.
+    - Above 90% Total Score (with Identity Verification "Successful"): STP (Straight-Through Processing) — The card is issued automatically.
+    - 75% - 90% Total Score (with Identity Verification "Successful"): Near-STP — The card is issued automatically, but the credit limit is set manually after a review.
+    - 50% - 75% Total Score (with Identity Verification "Successful"): Manual Review — The application goes for further assessment by an underwriter.
+    - Below 50% Total Score or Identity Verification "Rejected": Rejected — The application is automatically rejected.
