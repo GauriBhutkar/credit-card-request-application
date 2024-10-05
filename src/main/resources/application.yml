@@ -1,0 +1,13 @@
+credit-card-application:
+  steps:
+    - stepType: IDENTITY_VERIFICATION
+      isMandatory: true
+    - stepType: COMPLIANCE_CHECK
+      isMandatory: false
+    - stepType: EMPLOYMENT_VERIFICATION
+      isMandatory: false
+    - stepType: RISK_EVALUATION
+      isMandatory: false
+      score: null
+    - stepType: BEHAVIOR_ANALYSIS
+      isMandatory: false

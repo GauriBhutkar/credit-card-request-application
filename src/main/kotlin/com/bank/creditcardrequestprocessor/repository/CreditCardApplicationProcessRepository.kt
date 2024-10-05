@@ -1,0 +1,9 @@
+package com.bank.creditcardrequestprocessor.repository
+
+import com.bank.creditcardrequestprocessor.domain.CreditCardApplicationProcess
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository
+import org.springframework.stereotype.Repository
+import java.util.UUID
+
+@Repository
+interface CreditCardApplicationProcessRepository : ReactiveMongoRepository<CreditCardApplicationProcess, UUID>
