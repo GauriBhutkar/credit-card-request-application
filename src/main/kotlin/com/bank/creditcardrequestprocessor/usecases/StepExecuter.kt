@@ -8,6 +8,7 @@ import com.bank.creditcardrequestprocessor.infra.request.ProcessCreditCardInput
 import com.bank.scoreVerification.behaviouralanalysis.infra.request.BehaviourCheckInput
 import com.bank.scoreVerification.compliancecheck.infra.request.ComplianceCheckInput
 import com.bank.scoreVerification.employmentVerification.infra.request.EmploymentVerificationInput
+import com.bank.scoreVerification.identityverification.infra.request.IdentityVerificationInput
 import com.bank.scoreVerification.riskevaluation.infra.request.RiskEvaluationInput
 import reactor.core.publisher.Mono
 
