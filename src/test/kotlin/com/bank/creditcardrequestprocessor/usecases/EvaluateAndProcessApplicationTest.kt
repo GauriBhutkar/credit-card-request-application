@@ -37,7 +37,7 @@ class EvaluateAndProcessApplicationTest {
         employmentVerificationClient,
         riskEvaluationClient,
         creditCardApplicationProcessRepository,
-        config
+        config,
     )
 
     private val applicationId = UUID.randomUUID()
@@ -50,7 +50,7 @@ class EvaluateAndProcessApplicationTest {
         EmploymentDetails(EmploymentStatus.FULL_TIME, "Global Inc"),
         20000,
         File.createTempFile("bank-statement", ".pdf"),
-        additionalInput = ""
+        additionalInput = "",
     )
 
     @BeforeEach
@@ -60,7 +60,7 @@ class EvaluateAndProcessApplicationTest {
             CreditCardApplicationStepConfig(ApplicationStep.COMPLIANCE_CHECK, false, null),
             CreditCardApplicationStepConfig(ApplicationStep.EMPLOYMENT_VERIFICATION, false, null),
             CreditCardApplicationStepConfig(ApplicationStep.RISK_EVALUATION, false, null),
-            CreditCardApplicationStepConfig(ApplicationStep.BEHAVIOR_ANALYSIS, false, null)
+            CreditCardApplicationStepConfig(ApplicationStep.BEHAVIOR_ANALYSIS, false, null),
         )
     }
 

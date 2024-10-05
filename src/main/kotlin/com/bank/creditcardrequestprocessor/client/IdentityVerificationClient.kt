@@ -1,6 +1,7 @@
 package com.bank.creditcardrequestprocessor.client
 
 import com.bank.creditcardrequestprocessor.infra.response.StepResult
+import com.bank.scoreVerification.identityverification.infra.request.IdentityVerificationInput
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
@@ -31,9 +32,3 @@ class IdentityVerificationClient(
             }
     }
 }
-
-class IdentityVerificationInput(
-    val customerId: UUID,
-    val customerName: String,
-    val mobileNumber: String,
-)

@@ -92,7 +92,7 @@ class EvaluateAndProcessApplication(
     private fun executeSteps(
         process: CreditCardApplicationProcess,
         input: ProcessCreditCardInput,
-        steps: List<CreditCardApplicationStep>
+        steps: List<CreditCardApplicationStep>,
     ): Mono<CreditCardApplicationProcess> {
         return steps.fold(Mono.just(process)) { acc, step ->
             acc.flatMap { updatedProcess ->
