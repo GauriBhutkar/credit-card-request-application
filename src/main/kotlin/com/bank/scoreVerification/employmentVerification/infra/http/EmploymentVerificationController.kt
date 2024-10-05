@@ -1,8 +1,8 @@
 package com.bank.scoreVerification.employmentVerification.infra.http
 
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.employmentVerification.client.EmploymentVerificationESBClient
 import com.bank.scoreVerification.employmentVerification.infra.request.EmploymentVerificationInput
-import com.bank.scoreVerification.employmentVerification.infra.response.EmploymentVerificationResult
 import com.bank.scoreVerification.employmentVerification.repositories.EmploymentVerificationRepository
 import com.bank.scoreVerification.employmentVerification.usecases.VerifyEmploymentDetails
 import org.springframework.http.HttpStatus
@@ -24,7 +24,7 @@ class EmploymentVerificationController(
     @PostMapping("/employment-verifications")
     fun applyForCreditCard(
         @RequestBody employmentVerificationInput: EmploymentVerificationInput,
-    ): Mono<ResponseEntity<EmploymentVerificationResult>> {
+    ): Mono<ResponseEntity<StepResult>> {
         return verifyEmploymentDetails(employmentVerificationInput).map {
             ResponseEntity(it, HttpStatus.ACCEPTED)
         }

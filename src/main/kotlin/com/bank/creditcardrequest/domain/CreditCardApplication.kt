@@ -1,6 +1,7 @@
 package com.bank.creditcardrequest.domain
 
 import com.bank.creditcardrequest.infra.request.CustomerDetailsInput
+import com.bank.creditcardrequest.infra.request.EmploymentDetails
 import java.io.File
 import java.util.UUID
 
@@ -26,23 +27,9 @@ class CreditCardApplication(
                 nationality = application.nationality,
                 address = application.address,
                 annualIncome = application.annualIncome,
-                employmentDetails = EmploymentDetails.from(application.employmentDetails),
+                employmentDetails = application.employmentDetails,
                 creditCardLimit = application.creditCardLimit,
                 bankStatement = application.bankStatement,
-            )
-        }
-    }
-}
-
-data class EmploymentDetails(
-    val employmentStatus: String,
-    val employerName: String?,
-) {
-    companion object {
-        fun from(details: com.bank.creditcardrequest.infra.request.EmploymentDetails): EmploymentDetails {
-            return EmploymentDetails(
-                details.employmentStatus.name,
-                details.employerName,
             )
         }
     }

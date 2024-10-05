@@ -1,8 +1,8 @@
 package com.bank.scoreVerification.compliancecheck.infra.http
 
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.compliancecheck.client.ComplianceCheckESBClient
 import com.bank.scoreVerification.compliancecheck.infra.request.ComplianceCheckInput
-import com.bank.scoreVerification.compliancecheck.infra.response.ComplianceCheckResult
 import com.bank.scoreVerification.compliancecheck.repositories.ComplianceCheckRepository
 import com.bank.scoreVerification.compliancecheck.usecases.ComplianceCheck
 import org.springframework.http.HttpStatus
@@ -24,7 +24,7 @@ class ComplianceCheckController(
     @PostMapping("/compliance-check")
     fun applyForCreditCard(
         @RequestBody complianceCheckInput: ComplianceCheckInput,
-    ): Mono<ResponseEntity<ComplianceCheckResult>> {
+    ): Mono<ResponseEntity<StepResult>> {
         return complianceCheck(complianceCheckInput).map {
             ResponseEntity(it, HttpStatus.OK)
         }

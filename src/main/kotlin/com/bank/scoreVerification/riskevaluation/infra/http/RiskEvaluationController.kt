@@ -1,8 +1,8 @@
 package com.bank.scoreVerification.riskevaluation.infra.http
 
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.riskevaluation.client.RiskEvaluationESBClient
 import com.bank.scoreVerification.riskevaluation.infra.request.RiskEvaluationInput
-import com.bank.scoreVerification.riskevaluation.infra.response.RiskEvaluationResult
 import com.bank.scoreVerification.riskevaluation.repositories.RiskEvaluationRepository
 import com.bank.scoreVerification.riskevaluation.usecases.EvaluateRisk
 import org.springframework.http.HttpStatus
@@ -24,7 +24,7 @@ class RiskEvaluationController(
     @PostMapping("/risk-evaluation")
     fun evaluateRisk(
         @RequestBody input: RiskEvaluationInput,
-    ): Mono<ResponseEntity<RiskEvaluationResult>> {
+    ): Mono<ResponseEntity<StepResult>> {
         return evaluate(input).map {
             ResponseEntity(it, HttpStatus.OK)
         }

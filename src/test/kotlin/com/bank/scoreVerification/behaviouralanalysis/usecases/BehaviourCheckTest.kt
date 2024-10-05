@@ -1,13 +1,13 @@
 package com.bank.scoreVerification.behaviouralanalysis.usecases
 
 import com.bank.creditcardrequest.domain.VerificationStatus
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.behaviouralanalysis.client.BehaviouralCheckESBClient
 import com.bank.scoreVerification.behaviouralanalysis.domain.BehaviourCheckRecord
 import com.bank.scoreVerification.behaviouralanalysis.domain.CreditBehavior
 import com.bank.scoreVerification.behaviouralanalysis.domain.PaymentHistorySummary
 import com.bank.scoreVerification.behaviouralanalysis.domain.SpendingPatternSummary
 import com.bank.scoreVerification.behaviouralanalysis.infra.request.BehaviourCheckInput
-import com.bank.scoreVerification.behaviouralanalysis.infra.response.BehaviourCheckResult
 import com.bank.scoreVerification.behaviouralanalysis.repositories.BehaviourCheckRepository
 import io.mockk.every
 import io.mockk.mockk
@@ -52,14 +52,14 @@ class BehaviourCheckTest {
             File.createTempFile("bank-statement", ".pdf"),
         )
 
-        val expectedResult = BehaviourCheckResult(
+        val expectedResult = StepResult(
             verificationStatus = VerificationStatus.VERIFIED,
             verificationScore = 90,
         )
         every { behaviouralCheckESBClient.behaviourCheck(input) } returns Mono.just(behaviourCheckResponse)
         every { behaviourCheckRepository.save(behaviourCheckResponse) } returns Mono.just(behaviourCheckResponse)
 
-        val result: Mono<BehaviourCheckResult> = behaviourCheck(input)
+        val result: Mono<StepResult> = behaviourCheck(input)
 
         StepVerifier.create(result).consumeNextWith { assertEquals(it, expectedResult) }.verifyComplete()
     }

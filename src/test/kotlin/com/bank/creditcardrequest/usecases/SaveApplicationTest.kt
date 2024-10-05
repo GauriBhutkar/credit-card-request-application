@@ -42,7 +42,7 @@ class SaveApplicationTest {
             customerDetailsInput.nationality,
             customerDetailsInput.address,
             customerDetailsInput.annualIncome,
-            com.bank.creditcardrequest.domain.EmploymentDetails("FULL_TIME", "Deloitte"),
+            EmploymentDetails(EmploymentStatus.FULL_TIME, "Deloitte"),
             customerDetailsInput.creditCardLimit,
             customerDetailsInput.bankStatement,
         )

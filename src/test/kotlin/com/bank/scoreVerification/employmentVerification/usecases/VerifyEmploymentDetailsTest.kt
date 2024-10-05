@@ -3,13 +3,13 @@ package com.bank.scoreVerification.employmentVerification.usecases
 import com.bank.creditcardrequest.domain.VerificationStatus
 import com.bank.creditcardrequest.infra.request.EmploymentDetails
 import com.bank.creditcardrequest.infra.request.EmploymentStatus
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.employmentVerification.client.EmploymentVerificationESBClient
 import com.bank.scoreVerification.employmentVerification.domain.EmployerDetails
 import com.bank.scoreVerification.employmentVerification.domain.EmploymentRecord
 import com.bank.scoreVerification.employmentVerification.domain.EmploymentType
 import com.bank.scoreVerification.employmentVerification.domain.IncomeInformation
 import com.bank.scoreVerification.employmentVerification.infra.request.EmploymentVerificationInput
-import com.bank.scoreVerification.employmentVerification.infra.response.EmploymentVerificationResult
 import com.bank.scoreVerification.employmentVerification.repositories.EmploymentVerificationRepository
 import io.mockk.every
 import io.mockk.mockk
@@ -56,14 +56,14 @@ class VerifyEmploymentDetailsTest {
             EmploymentDetails(EmploymentStatus.FULL_TIME, "Tech Solutions"),
         )
 
-        val expectedResult = EmploymentVerificationResult(
+        val expectedResult = StepResult(
             verificationStatus = VerificationStatus.VERIFIED,
             verificationScore = 85,
         )
         every { employmentVerificationESBClient.verifyEmploymentDetails(input) } returns Mono.just(employmentRecord)
         every { employmentVerificationRepository.save(employmentRecord) } returns Mono.just(employmentRecord)
 
-        val result: Mono<EmploymentVerificationResult> = verifyEmploymentDetails(input)
+        val result: Mono<StepResult> = verifyEmploymentDetails(input)
 
         StepVerifier.create(result).consumeNextWith { assertEquals(it, expectedResult) }.verifyComplete()
     }

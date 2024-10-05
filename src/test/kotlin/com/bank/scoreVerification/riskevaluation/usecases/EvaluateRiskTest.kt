@@ -3,11 +3,11 @@ package com.bank.scoreVerification.riskevaluation.usecases
 import com.bank.creditcardrequest.domain.VerificationStatus
 import com.bank.creditcardrequest.infra.request.EmploymentDetails
 import com.bank.creditcardrequest.infra.request.EmploymentStatus
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.riskevaluation.client.RiskEvaluationESBClient
 import com.bank.scoreVerification.riskevaluation.domain.RiskEvaluationRecord
 import com.bank.scoreVerification.riskevaluation.domain.RiskEvaluationReport
 import com.bank.scoreVerification.riskevaluation.infra.request.RiskEvaluationInput
-import com.bank.scoreVerification.riskevaluation.infra.response.RiskEvaluationResult
 import com.bank.scoreVerification.riskevaluation.repositories.RiskEvaluationRepository
 import io.mockk.every
 import io.mockk.mockk
@@ -50,18 +50,18 @@ class EvaluateRiskTest {
             "John Doe",
             "9987654321",
             EmploymentDetails(EmploymentStatus.FULL_TIME, "Tech Solutions"),
-            20000.0,
+            20000,
             null,
         )
 
-        val expectedResult = RiskEvaluationResult(
+        val expectedResult = StepResult(
             verificationStatus = VerificationStatus.VERIFIED,
             verificationScore = 90,
         )
         every { riskEvaluationESBClient.evaluateRisk(input) } returns Mono.just(riskEvaluationResponse)
         every { riskEvaluationRepository.save(riskEvaluationResponse) } returns Mono.just(riskEvaluationResponse)
 
-        val result: Mono<RiskEvaluationResult> = evaluateRisk(input)
+        val result: Mono<StepResult> = evaluateRisk(input)
 
         StepVerifier.create(result).consumeNextWith { assertEquals(it, expectedResult) }.verifyComplete()
     }

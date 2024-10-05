@@ -8,6 +8,6 @@ class RiskEvaluationInput(
     val customerName: String,
     val nationality: String,
     val employmentDetails: EmploymentDetails,
-    val creditCardLimit: Double,
+    val creditCardLimit: Long,
     val additionalInformation: String?,
 )

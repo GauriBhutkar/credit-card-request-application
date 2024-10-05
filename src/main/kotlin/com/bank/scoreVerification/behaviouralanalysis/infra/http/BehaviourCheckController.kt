@@ -1,8 +1,8 @@
 package com.bank.scoreVerification.behaviouralanalysis.infra.http
 
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.behaviouralanalysis.client.BehaviouralCheckESBClient
 import com.bank.scoreVerification.behaviouralanalysis.infra.request.BehaviourCheckInput
-import com.bank.scoreVerification.behaviouralanalysis.infra.response.BehaviourCheckResult
 import com.bank.scoreVerification.behaviouralanalysis.repositories.BehaviourCheckRepository
 import com.bank.scoreVerification.behaviouralanalysis.usecases.BehaviourCheck
 import org.springframework.http.HttpStatus
@@ -24,7 +24,7 @@ class BehaviourCheckController(
     @PostMapping("/behaviour-check")
     fun applyForCreditCard(
         @RequestBody behaviourCheckInput: BehaviourCheckInput,
-    ): Mono<ResponseEntity<BehaviourCheckResult>> {
+    ): Mono<ResponseEntity<StepResult>> {
         return behaviourCheck(behaviourCheckInput).map {
             ResponseEntity(it, HttpStatus.OK)
         }

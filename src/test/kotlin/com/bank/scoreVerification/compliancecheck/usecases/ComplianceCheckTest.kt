@@ -3,11 +3,11 @@ package com.bank.scoreVerification.compliancecheck.usecases
 import com.bank.creditcardrequest.domain.VerificationStatus
 import com.bank.creditcardrequest.infra.request.EmploymentDetails
 import com.bank.creditcardrequest.infra.request.EmploymentStatus
+import com.bank.creditcardrequestprocessor.infra.response.StepResult
 import com.bank.scoreVerification.compliancecheck.client.ComplianceCheckESBClient
 import com.bank.scoreVerification.compliancecheck.domain.BlacklistCheckResult
 import com.bank.scoreVerification.compliancecheck.domain.ComplianceCheckRecord
 import com.bank.scoreVerification.compliancecheck.infra.request.ComplianceCheckInput
-import com.bank.scoreVerification.compliancecheck.infra.response.ComplianceCheckResult
 import com.bank.scoreVerification.compliancecheck.repositories.ComplianceCheckRepository
 import io.mockk.every
 import io.mockk.mockk
@@ -51,14 +51,14 @@ class ComplianceCheckTest {
             File.createTempFile("bank_statement", ".pdf"),
         )
 
-        val expectedResult = ComplianceCheckResult(
+        val expectedResult = StepResult(
             verificationStatus = VerificationStatus.VERIFIED,
             verificationScore = 30,
         )
         every { complianceCheckESBClient.complianceCheck(input) } returns Mono.just(complianceCheckRecord)
         every { complianceCheckRepository.save(complianceCheckRecord) } returns Mono.just(complianceCheckRecord)
 
-        val result: Mono<ComplianceCheckResult> = complianceCheck(input)
+        val result: Mono<StepResult> = complianceCheck(input)
 
         StepVerifier.create(result).consumeNextWith { assertEquals(it, expectedResult) }.verifyComplete()
     }

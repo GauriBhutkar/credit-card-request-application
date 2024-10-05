@@ -17,7 +17,7 @@ class CustomerDetailsInput(
 
 class EmploymentDetails(
     val employmentStatus: EmploymentStatus,
-    val employerName: String?,
+    val employerName: String? = null,
 )
 
 enum class EmploymentStatus {
